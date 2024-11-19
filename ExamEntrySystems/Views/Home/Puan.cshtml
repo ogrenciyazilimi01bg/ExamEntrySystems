@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Hesaplama";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body style="background-color:#FFA500">
+    <div class="container">
+        <h2>Ortalama Hesaplama</h2>
+        <form id="SınavNotForm">
+            <label for="Sinav1">Sınav Notu 1:</label>
+            <input type="number" id="Sinav1" name="Sinav1" min="1" max="100" required>
+            <label for="Sinav2">Sınav Notu 2:</label>
+            <input type="number" id="Sinav2" name="Sinav2" min="1" max="100" required>
+            <label for="Sinav3">Sınav Notu 3:</label>
+            <input type="number" id="Sinav3" name="Sinav3" min="1" max="100" required>
+            <button type="button" >Ortalama Hesapla</button>
+          
+        </form>
+        <p id="result"></p>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get elements
+            var form = document.getElementById("SınavNotForm");
+            var resultParagraph = document.getElementById("result");
+
+            // Add click event listener to the button
+            form.querySelector("button").addEventListener("click", function () {
+                // Get exam scores
+                var sinav1 = parseFloat(document.getElementById("Sinav1").value);
+                var sinav2 = parseFloat(document.getElementById("Sinav2").value);
+                var sinav3 = parseFloat(document.getElementById("Sinav3").value);
+
+                // Check if all fields are filled and within the valid range
+                if (!isNaN(sinav1) && !isNaN(sinav2) && !isNaN(sinav3) &&
+                    sinav1 >= 1 && sinav1 <= 100 &&
+                    sinav2 >= 1 && sinav2 <= 100 &&
+                    sinav3 >= 1 && sinav3 <= 100) {
+                    // Calculate the average
+                    var average = (sinav1 + sinav2 + sinav3) / 3;
+                     
+                    // Display the result
+                    resultParagraph.innerText = "Ortalama: " + average.toFixed(2);
+                } else {
+                    resultParagraph.innerText = "Geçersiz not girişi. Lütfen 1 ile 100 arasında geçerli notlar girin.";
+                }
+            });
+        });
+    </script>
+    
+</body>
+
+
+
+</html>

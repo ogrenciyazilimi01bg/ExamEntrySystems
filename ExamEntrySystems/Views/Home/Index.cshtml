@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Login Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            
+            background-color: #FFFF00; 
+        }
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+    <div class="container">
+        <section id="content">
+            <form method="post" action="/Home/Puan" onsubmit="return girisKontrol()">
+                <div class="form-group">
+                    <label>KullanıcıAdi</label>
+                    <input name="KullaniciAdi" id="kullaniciAdi" class="form-control" placeholder="KullaniciAdi" type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Sifre</label>
+                    <input class="form-control" id="sifre" name="Sifre" placeholder="Sifre" type="password" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Giriş </button>
+                    <a href="/Home/Uyelik">Kayıt Ol</a>
+                </div>
+            </form>
+        </section>
+    </div>
+    <script>
+        function girisKontrol() {
+            var kullaniciAdi = document.getElementById("kullaniciAdi").value;
+            var sifre = document.getElementById("sifre").value;
+
+            // Burada kullanıcı adı ve şifre kontrolü yapılabilir.
+            // Örnek olarak, localStorage'tan alınan bilgilerle karşılaştırabilirsiniz.
+            var dosyaIcerik = window.localStorage.getItem("dosyaIcerik");
+            if (dosyaIcerik && dosyaIcerik.includes("Kullanıcı Adı: " + kullaniciAdi + "\nŞifre: " + sifre)) {
+                // Kullanıcı adı ve şifre doğrulandı, işleme devam et
+                return true;
+            } else {
+                // Kullanıcı adı ve şifre eşleşmiyor, formu göndermeyi engelle
+                alert("Kullanıcı adı veya şifre yanlış. Lütfen tekrar deneyin.");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
+
